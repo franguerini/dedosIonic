@@ -5,7 +5,11 @@ angular.module('starter.controllers', [])
 
 .controller('lobbyCtrl', function($scope) {})
 
-.controller('juegoCtrl', function($scope) {})
+.controller('juegoCtrl', function($scope) {
+	$scope.fingerIsUp = function () {
+		alert("the finger is up");
+	}
+})
 
 .controller('crearPartidaCtrl', ['$scope', 'appServices', function($scope, appServices) {
 	$scope.createGame = function(){
