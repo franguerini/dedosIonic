@@ -1,13 +1,13 @@
-<ion-view view-title="Chats">
+<ion-view view-title="create">
   <ion-content>
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="Nombre del jugador">
+        <input type="text" placeholder="Nombre del jugador"  ng-model="username">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Nombre de la partida">
+        <input type="text" placeholder="Nombre de la partida" ng-model="name">
       </label>
-      <button class="button button-full button-positive activated" ui-sref="lobby">
+      <button class="button button-full button-positive activated" ng-click="createGame()">
         Crear
       </button>
     </div>

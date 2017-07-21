@@ -1,20 +1,19 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope) {
-    var myIoSocket = io.connect('http://localhost:8000');
-})
+.controller('HomeCtrl', ['$scope', 'appServices', function($scope, appServices) {
+	debugger
+	$scope.createGame = function(){
+		debugger
+		appServices.createGame($scope.username, $scope.name);
+	}
+}])
 
 .controller('lobbyCtrl', function($scope) {})
 
 .controller('juegoCtrl', function($scope) {})
 
-.controller('crearPartidaCtrl', function($scope, Chats) {
+.controller('crearPartidaCtrl', function($scope) {
 
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
 })
 
 
