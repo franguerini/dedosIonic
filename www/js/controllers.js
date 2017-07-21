@@ -5,6 +5,7 @@ angular.module('starter.controllers', [])
 
 .controller('lobbyCtrl', ['$scope', 'appServices', 'SocketService', function($scope, appServices, SocketService) {
 	appServices.getGame().then(function(data){
+		console.log(data);
 		$scope.game = data;
 	});
 
