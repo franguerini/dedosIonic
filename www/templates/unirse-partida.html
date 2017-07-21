@@ -2,12 +2,12 @@
   <ion-content>
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="Nombre del jugador">
+        <input type="text" placeholder="Nombre del jugador" ng-model="data.username">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Codigo de la partida">
+        <input type="text" placeholder="Codigo de la partida" ng-model="data.gameId">
       </label>
-      <button class="button button-full button-energized activated">
+      <button class="button button-full button-energized activated" ng-click="joinGame()">
         Unirse
       </button>
     </div>
