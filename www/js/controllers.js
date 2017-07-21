@@ -9,7 +9,15 @@ angular.module('starter.controllers', [])
 		$scope.game = data;
 	});
 
+<<<<<<< HEAD
+.controller('juegoCtrl', function($scope) {
+	$scope.fingerIsUp = function () {
+		alert("the finger is up");
+	}
+})
+=======
 	var users = [];
+>>>>>>> 1663827d429f17f32c7910f109a8b2355f5ac9a2
 
 	SocketService.on('new user', function(data){
 		console.log(data);
@@ -18,9 +26,21 @@ angular.module('starter.controllers', [])
 
 }])
 
-.controller('juegoCtrl', function($scope) {
-
-})
+.controller('juegoCtrl', ['$scope', '$interval', 'appServices', function($scope, $interval, appServices) {
+	SocketService.on('start game', function(data){
+		$scope.countDown = 5;
+        var stop = $interval(function() {
+            if($scope.countDown == 0){
+            	$interval.cancel(stop);
+            	endGame();
+            }
+            $scope.countDown--;
+          }, 100);
+        function endGame(){
+			appServices.endGame();
+        }
+    });
+}])
 
 .controller('crearPartidaCtrl', ['$scope', 'appServices', '$state', function($scope, appServices, $state) {
 	$scope.data = {};
