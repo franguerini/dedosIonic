@@ -9,7 +9,21 @@ angular.module('starter.controllers', [])
 	})
 }])
 
-.controller('juegoCtrl', function($scope) {})
+.controller('juegoCtrl', ['$scope', '$interval', 'appServices', function($scope, $interval, appServices) {
+	SocketService.on('start game', function(data){
+		$scope.countDown = 5;
+        var stop = $interval(function() {
+            if($scope.countDown == 0){
+            	$interval.cancel(stop);
+            	endGame();
+            }
+            $scope.countDown--;
+          }, 100);
+        function endGame(){
+			appServices.endGame();
+        }
+    });
+}])
 
 .controller('crearPartidaCtrl', ['$scope', 'appServices', '$state', function($scope, appServices, $state) {
 	$scope.data = {};

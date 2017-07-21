@@ -17,12 +17,20 @@ angular.module('starter.services')
     });
     return deferer.promise;
   }
-  function joinGame(username, groupId){
+  function joinGame(username, gameId){
     var deferer = $q.defer();
-    SocketService.emit('join game', {username: username, groupId: groupId});
+    SocketService.emit('join game', {username: username, gameId: gameId});
     SocketService.on('join game', function(data){
         game.username = data.username;
         game.gameId = data.gameId;
+        deferer.resolve(data);
+    });
+    return deferer.promise;
+  }
+  function endGame(status){
+    var deferer = $q.defer();
+    SocketService.emit('finish game', {username: username, gameId: gameId});
+    SocketService.on('finish game', function(data){
         deferer.resolve(data);
     });
     return deferer.promise;
@@ -34,8 +42,11 @@ angular.module('starter.services')
     getGame: function(){
       return getGame();
     },
-    joinGame: function(username, groupId){
-      return joinGame(username, groupId);
+    endGame: function(status){
+      return endGame(status);
+    },
+    joinGame: function(username, gameId){
+      return joinGame(username, gameId);
     }
   };
 }]);
