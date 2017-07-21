@@ -3,13 +3,23 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', ['$scope', function($scope) {
 }])
 
-.controller('lobbyCtrl', ['$scope', 'appServices', function($scope, appServices) {
+.controller('lobbyCtrl', ['$scope', 'appServices', 'SocketService', function($scope, appServices, SocketService) {
 	appServices.getGame().then(function(data){
 		$scope.game = data;
-	})
+	});
+
+	var users = [];
+
+	SocketService.on('new user', function(data){
+		console.log(data);
+		users.push(data);
+	});
+
 }])
 
-.controller('juegoCtrl', function($scope) {})
+.controller('juegoCtrl', function($scope) {
+
+})
 
 .controller('crearPartidaCtrl', ['$scope', 'appServices', '$state', function($scope, appServices, $state) {
 	$scope.createGame = function(){
