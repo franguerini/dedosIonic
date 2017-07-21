@@ -1,12 +1,11 @@
 <ion-view view-title="Chats">
-  <ion-content>
-    <div class="list">
-      <label class="item item-input">
-        <input type="text" placeholder="Cantidad de dedos">
-      </label>
-      <button class="button button-full button-positive activated" ui-sref="lobby">
-        Comenzar
-      </button>
-    </div>
+  <ion-content style="display:inline-block">
+ <div style="width: 100%; height: 100%" class="text-center">
+   <div style="float:left; width: 50%; height: 100%" ng-mouseup="fingerIsUp()">
+   </div>
+   <div style="float:right; width: 50%; height: 100%">
+   </div>
+</div>
+<div style="clear:both"></div>
   </ion-content>
 </ion-view>

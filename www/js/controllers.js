@@ -3,10 +3,26 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', ['$scope', function($scope) {
 }])
 
-.controller('lobbyCtrl', ['$scope', 'appServices', function($scope, appServices) {
+.controller('lobbyCtrl', ['$scope', 'appServices', 'SocketService', function($scope, appServices, SocketService) {
 	appServices.getGame().then(function(data){
 		$scope.game = data;
-	})
+	});
+
+<<<<<<< HEAD
+.controller('juegoCtrl', function($scope) {
+	$scope.fingerIsUp = function () {
+		alert("the finger is up");
+	}
+})
+=======
+	var users = [];
+>>>>>>> 1663827d429f17f32c7910f109a8b2355f5ac9a2
+
+	SocketService.on('new user', function(data){
+		console.log(data);
+		users.push(data);
+	});
+
 }])
 
 .controller('juegoCtrl', ['$scope', '$interval', 'appServices', function($scope, $interval, appServices) {
