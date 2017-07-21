@@ -1,15 +1,21 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', ['$scope', 'appServices', function($scope, appServices) {
+.controller('HomeCtrl', ['$scope', function($scope) {
 }])
 
-.controller('lobbyCtrl', function($scope) {})
+.controller('lobbyCtrl', ['$scope', 'appServices', function($scope, appServices) {
+	appServices.getGame().then(function(data){
+		$scope.game = data;
+	})
+}])
 
 .controller('juegoCtrl', function($scope) {})
 
-.controller('crearPartidaCtrl', ['$scope', 'appServices', function($scope, appServices) {
+.controller('crearPartidaCtrl', ['$scope', 'appServices', '$state', function($scope, appServices, $state) {
 	$scope.createGame = function(){
-		appServices.createGame($scope.username, $scope.name);
+		appServices.createGame($scope.username, $scope.name).then(function(){
+			$state.go("lobby");
+		});
 	}
 }])
 
